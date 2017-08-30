@@ -31,7 +31,7 @@ def playHangman():
     # get the random word of the game from the getRandomWord function
     wordOfTheGame = getRandomWord()
     #this gives the user x number of attempts per game
-    attempt = len(wordOfTheGame)-1
+    tries = len(wordOfTheGame)-1
     #set up the list for letters being guessed so if user has already guessed, it informs them
     lettersGuessed= []
     #set up the list for the word that is being guessed, with * for all unknowns
@@ -44,7 +44,7 @@ def playHangman():
     # make sure the user has guesses left, if not, the game is over
     # also make sure that there are letters left in the word for the user to guess
 
-    while attempt !=0 and "*" in wordThatIsBeingGuessed:
+    while tries !=0 and "*" in wordThatIsBeingGuessed:
         #This adds the * for the blank spaces
         wordPutTogether = "".join(wordThatIsBeingGuessed)
         print(wordPutTogether)
@@ -75,13 +75,13 @@ def playHangman():
                 wordThatIsBeingGuessed[letter]=userGuess
                 #since the user is correct, they dont lose an attempt, but still need to know how many
                 #attempts they have left
-                print("You have " + str(attempt) + " attempts left")
+                print("You have " + str(tries) + " attempts left")
 
         if userGuess not in wordOfTheGame:
             #if the user is wrong, take an attempts away
-            attempt -= 1
+            tries -= 1
             # tell the user how many attempts they have left
-            print("You have " + str(attempt) + " attempts left")
+            print("You have " + str(tries) + " attempts left")
     #if they have no more stars left, they win the game
     if "*" not in wordThatIsBeingGuessed:
         print("You beat the game! You live another day!")
