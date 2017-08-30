@@ -1,7 +1,12 @@
 #this program plays hangman with the user
 #this website helped me a little bit, with showing me logic on how someone played a guessing game with letters
 #http://www.practicepython.org/solution/2017/01/08/31-guess-letters-solutions.html
+#Didn't need classes because working with words didn't call for it
+#If I was working with multiple players and cards I could make a class for those
+
 import random
+
+
 
 
 def getRandomWord():
@@ -18,12 +23,25 @@ def welcomeUser():
     choose = str("press enter to continue...")
     print("Welcome, "+ name + "!")
     input(choose)
-    print("You will  have a limited amount of chances to guess the "
-    "letters in the word,based on how long the word is or you will die in the gallows!")
+    print('''
+|───────────────────────────────────────────────────────────────────| 
+|                  How to Play Hangman                     |
+|───────────────────────────────────────────────────────────────────|
+|  To Play Hangman, you must guess the word correctly     |
+|  in the amount of tries listed. The amount of tries     |
+|  will vary on how long your word is. You will have 1    |
+|  less try than the length of the word. You can guess    |
+|  only one letter at a time. For each wrong attempt,     |
+|  you will add one body part to the noose. When the      |
+   amount of tries runs out, you will die in the gallows. |
+|_________________________________________________________|
+ '''
+)
     input(choose)
     print("Choose your letters wisely. *Evil Laugh* ")
     input(choose)
     return name
+
 
 def playHangman():
     #clear the screen to make the game easier to read
@@ -55,6 +73,8 @@ def playHangman():
             userGuess = input("Please enter a letter you think is in the word: ").lower()
         #exception handling on page 107 python book
         except:
+            print("Something went wrong! Try again!")
+        else:
             # tell the user if they have already guessed that letter and to guess again
             if userGuess in lettersGuessed:
                 print("You have already guessed that letter! Please guess a different letter!")
@@ -87,7 +107,7 @@ def playHangman():
         print("You beat the game! You live another day!")
     #they ran out of stars
     else:
-        print("You lost! The word was:"+ wordOfTheGame +"Na na na na boo boo! ")
+        print("You lost! The word was:"+ wordOfTheGame +" Na na na na boo boo! ")
 
 
 
@@ -96,9 +116,10 @@ def playHangman():
           # "yes or any other key to quit")
 
 
-getRandomWord()
-welcomeUser()
-playHangman()
 
-
+def main():
+    getRandomWord()
+    welcomeUser()
+    playHangman()
+main()
 

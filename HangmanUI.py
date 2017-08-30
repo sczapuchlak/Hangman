@@ -1,40 +1,40 @@
 # def hangman_graphic(self, guesses):
-# 		if guesses == 0:
-# 			print( "________      ")
-# 			print ("|      |      ")
+# 		if tries == 0:
+# 			print( "_____      ")
+# 			print ("|   |      ")
+# 			print ("|          ")
+# 			print ("|          ")
+# 			print ("|          ")
+# 			print ("|          ")
+# 		elif tries == 1:
+# 			print ("_____      ")
+# 			print ("|    |      ")
+# 			print ("|    0      ")
 # 			print ("|             ")
 # 			print ("|             ")
 # 			print ("|             ")
-# 			print ("|             ")
-# 		elif guesses == 1:
-# 			print ("________      ")
-# 			print ("|      |      ")
-# 			print ("|      0      ")
-# 			print ("|             ")
-# 			print ("|             ")
-# 			print ("|             ")
-# 		elif guesses == 2:
+# 		elif tries == 2:
 # 			print ("________      ")
 # 			print ("|      |      ")
 # 			print ("|      0      ")
 # 			print ("|     /       ")
 # 			print ("|             ")
 # 			print ("|             ")
-# 		elif guesses == 3:
+# 		elif tries == 3:
 # 			print (""________      ")
 # 			print (""|      |      ")
 # 			print (""|      0      ")
 # 			print (""|     /|      ")
 # 			print (""|             ")
 # 			print (""|             ")
-# 		elif guesses == 4:
+# 		elif tries == 4:
 # 			print (""________      ")
 # 			print (""|      |      ")
 # 			print (""|      0      ")
 # 			print (""|     /|\     ")
 # 			print (""|             ")
 # 			print (""|             ")
-# 		elif guesses == 5:
+# 		elif tries == 5:
 # 			print ("________      ")
 # 			print ("|      |      ")
 # 			print ("|      0      ")
@@ -52,4 +52,3 @@
 # 			print ("sudden urge to urinate."
 # 			print ("GAME OVER!"
 # 			self.__init__()
-
