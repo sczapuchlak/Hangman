@@ -203,7 +203,7 @@ class Hangman(object):
                 print("|     /|\     ")
                 print("|     / \     ")
                 print("|             ")
-#Calls the program to run the first time
+#Calls the program to run the first time!
 Hangman()
 
 
