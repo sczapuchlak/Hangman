@@ -1,4 +1,6 @@
 #this program plays hangman with the user
+#this website helped me a little bit, with showing me logic on how someone played a guessing game with letters
+#http://www.practicepython.org/solution/2017/01/08/31-guess-letters-solutions.html
 import random
 
 
@@ -11,33 +13,81 @@ def getRandomWord():
     return word
 
 def welcomeUser():
-    name = input("What is your name scalleywag?")
-    print(" Welcome, "+ name + ", you will  have 9 chances to guess the "
-    "letters in the word, or you will die in the gallows! Guess wisely. "
-    "*Evil Laugh* ")
+    #welcome the user!
+    name = input("Hello! What is your name scalleywag?")
+    choose = str("press enter to continue...")
+    print("Welcome, "+ name + "!")
+    input(choose)
+    print("You will  have a limited amount of chances to guess the "
+    "letters in the word,based on how long the word is or you will die in the gallows!")
+    input(choose)
+    print("Choose your letters wisely. *Evil Laugh* ")
+    input(choose)
     return name
 
 def playHangman():
-   #get the random word of the game from the getRandomWord function
+    #clear the screen to make the game easier to read
+    print("\n" * 5)
+    # get the random word of the game from the getRandomWord function
     wordOfTheGame = getRandomWord()
-    listToDisplayDashes = []
-   # use set to see if user already guessed. sets don't allow duplicate values
-    lettersGuessed= set()
-    letterInTheWord = set(wordOfTheGame)
-    guess = 0
-    print(wordOfTheGame)
-     
+    #this gives the user x number of attempts per game
+    attempt = len(wordOfTheGame)-1
+    #set up the list for letters being guessed so if user has already guessed, it informs them
+    lettersGuessed= []
+    #set up the list for the word that is being guessed, with * for all unknowns
+    wordThatIsBeingGuessed = []
+    for letter in wordOfTheGame:
+        wordThatIsBeingGuessed.append("*")
+
+    # print(wordOfTheGame) this was for testing purposes only
+
     # make sure the user has guesses left, if not, the game is over
     # also make sure that there are letters left in the word for the user to guess
 
-    while guess <= 6 and len(letterInTheWord)>0 :
-        lettersGuessed = ''
+    while attempt !=0 and "*" in wordThatIsBeingGuessed:
+        #This adds the * for the blank spaces
+        wordPutTogether = "".join(wordThatIsBeingGuessed)
+        print(wordPutTogether)
+
         # make sure whatever the user enters is lowercase so there are no problems with typecase
-        userGuess = input("Please enter a letter you think is in the word: ").lower()
-        if userGuess in wordOfTheGame and userGuess not in lettersGuessed:
-            print("One letter correct")
-            lettersGuessed += ","+lettersGuessed
-            print("Progress: ")
+        #use exception handling
+        try:
+            userGuess = input("Please enter a letter you think is in the word: ").lower()
+        #exception handling on page 107 python book
+        except:
+            # tell the user if they have already guessed that letter and to guess again
+            if userGuess in lettersGuessed:
+                print("You have already guessed that letter! Please guess a different letter!")
+                continue
+
+            # make sure they enter a letter and nothing else/aren't being greedy with letters
+            if not userGuess.isalpha() or len(userGuess) > 1:
+                print("This is hangman! Do you even know how to play? Please enter ONE letter silly!")
+                continue
+
+        #add the users guesses to the letters guessed list
+        lettersGuessed.append(userGuess)
+        #check to see if the letter is in the word of the game
+        for letter in range(len(wordOfTheGame)):
+            #use an if statement if the users guess is in the letter of the game
+            if userGuess == wordOfTheGame[letter]:
+                #add the users letter to the word that is being guessed list
+                wordThatIsBeingGuessed[letter]=userGuess
+                #since the user is correct, they dont lose an attempt, but still need to know how many
+                #attempts they have left
+                print("You have " + str(attempt) + " attempts left")
+
+        if userGuess not in wordOfTheGame:
+            #if the user is wrong, take an attempts away
+            attempt -= 1
+            # tell the user how many attempts they have left
+            print("You have " + str(attempt) + " attempts left")
+    #if they have no more stars left, they win the game
+    if "*" not in wordThatIsBeingGuessed:
+        print("You beat the game! You live another day!")
+    #they ran out of stars
+    else:
+        print("You lost! The word was:"+ wordOfTheGame +"Na na na na boo boo! ")
 
 
 
