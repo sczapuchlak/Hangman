@@ -132,6 +132,18 @@ class Hangman(object):
         else:
             print("You lost! The word was:" + word + " Na na na na boo boo! ")
 
+    # this will print how many guess the user has left and what they have guessed
+    def progressReport(self, userGuess, word, wordThatIsBeingGuessed):
+        i = 0
+        while i < len(word):
+            if userGuess == word[i]:
+                wordThatIsBeingGuessed[i] = userGuess
+                i += 1
+            else:
+                i += 1
+
+        return "".join(wordThatIsBeingGuessed)
+
     #Ask the user if they want to play again!
     def playAnotherTime(self):
         again = input('Do you want to play again? Y for yes and anything else for no')
@@ -191,20 +203,7 @@ class Hangman(object):
                 print("|     /|\     ")
                 print("|     / \     ")
                 print("|             ")
-
-
-    #this will print how many guess the user has left and what they have guessed
-    def progressReport(self, userGuess,word, wordThatIsBeingGuessed):
-        i = 0
-        while i < len(word):
-            if userGuess == word[i]:
-                wordThatIsBeingGuessed[i] = userGuess
-                i += 1
-            else:
-                i += 1
-
-        return "".join(wordThatIsBeingGuessed)
-
+#Calls the program to run the first time
 Hangman()
 
 
@@ -212,8 +211,5 @@ Hangman()
 
 
 
-
-        #playAgain = input("Sorry, you didn't guess the word. Would you like another life to try again? Press Y "
-        # "yes or any other key to quit")
 
 
