@@ -23,9 +23,9 @@ class Hangman(object):
         print("Welcome, " + name + "!")
         input(choose)
         print('''
-    |───────────────────────────────────────────────────────────────────| 
+    |────────────────────────────────────────────|
     |                  How to Play Hangman                    |
-    |────────────────────────────────────────────────────────────────── |
+    |────────────────────────────────────────────|
     |  To Play Hangman, you must guess the word correctly     |
     |  in the amount of tries listed. You will have a total   |
     |  of 6 tries. You may only guess only one letter at a    |
@@ -77,7 +77,7 @@ class Hangman(object):
         # make sure the user has guesses left, if not, the game is over
         # also make sure that there are letters left in the word for the user to guess
 
-        while tries != 0 and "*" in wordThatIsBeingGuessed:
+        while tries >= 0 and "*" in wordThatIsBeingGuessed:
             # This adds the * for the blank spaces
             wordPutTogether = "".join(wordThatIsBeingGuessed)
             print(wordPutTogether)
@@ -147,7 +147,7 @@ class Hangman(object):
     #Ask the user if they want to play again!
     def playAnotherTime(self):
         again = input('Do you want to play again? Y for yes and anything else for no')
-        if again =='y' or 'Y':
+        if again =='y' or again=='Y':
             self.runGame()
         else:
             sys.exit(0)
@@ -155,24 +155,24 @@ class Hangman(object):
     #create the gallows to show when user guesses correctly or incorrectly
     def gallows(self,tries):
             if tries == 0:
-                print( "_____      ")
-                print("|   |      ")
-                print("|          ")
-                print("|          ")
-                print("|          ")
-                print("|          ")
+                print("________      ")
+                print("|      |      ")
+                print("|      0      ")
+                print("|     /|\     ")
+                print("|     / \     ")
+                print("|             ")
             elif tries == 1:
-                print("_____      ")
-                print("|    |      ")
-                print("|    0      ")
-                print("|             ")
-                print("|             ")
+                print("________      ")
+                print("|      |      ")
+                print("|      0      ")
+                print("|     /|\     ")
+                print("|     /       ")
                 print("|             ")
             elif tries == 2:
                 print("________      ")
                 print("|      |      ")
                 print("|      0      ")
-                print("|     /       ")
+                print("|     /|\     ")
                 print("|             ")
                 print("|             ")
             elif tries == 3:
@@ -186,23 +186,24 @@ class Hangman(object):
                 print("________      ")
                 print("|      |      ")
                 print("|      0      ")
-                print("|     /|\     ")
+                print("|      |     ")
                 print("|             ")
                 print("|             ")
             elif tries == 5:
-                print("________      ")
-                print("|      |      ")
-                print("|      0      ")
-                print("|     /|\     ")
-                print("|     /       ")
+                print("_____      ")
+                print("|    |      ")
+                print("|    0      ")
                 print("|             ")
-            else:
-                print("________      ")
-                print("|      |      ")
-                print("|      0      ")
-                print("|     /|\     ")
-                print("|     / \     ")
                 print("|             ")
+                print("|             ")
+            elif tries ==6:
+                print("_____      ")
+                print("|   |      ")
+                print("|          ")
+                print("|          ")
+                print("|          ")
+                print("|          ")
+
 #Calls the program to run the first time!
 Hangman()
 
